@@ -1,5 +1,9 @@
-console.log(add(-4, 10))
+console.log(subtract(14, 10))
 
 function add(a, b) {
     return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
 }

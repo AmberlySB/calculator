@@ -4,46 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
     <script src="./script.js" defer></script>
   </head>
   <body>
     <div id="container">
       <div id="calculator">
-        <div id="display">100,350,000</div>
+        <div id="display">0</div>
         <div id="button-container">
           <div id="first-row">
-            <button id="clear" class="gray">C</button>
-            <button id="positive-negative" class="gray">+/-</button>
-            <button id="percent" class="gray">%</button>
-            <button id="divide" class="orange">÷</button>
+            <button type="button" id="clear" class="gray">C</button>
+            <button type="button" id="positive-negative" class="gray">
+              +/-
+            </button>
+            <button type="button" id="percent" class="gray">%</button>
+            <button type="button" id="divide" class="orange">÷</button>
           </div>
 
           <div id="second-row">
-            <button id="seven">7</button>
-            <button id="eight">8</button>
-            <button id="nine">9</button>
-            <button id="multiply" class="orange">x</button>
+            <button type="button" id="seven">7</button>
+            <button type="button" id="eight">8</button>
+            <button type="button" id="nine">9</button>
+            <button type="button" id="multiply" class="orange">x</button>
           </div>
 
           <div id="third-row">
-            <button id="four">4</button>
-            <button id="five">5</button>
-            <button id="six">6</button>
-            <button id="subtract" class="orange">-</button>
+            <button type="button" id="four">4</button>
+            <button type="button" id="five">5</button>
+            <button type="button" id="six">6</button>
+            <button type="button" id="subtract" class="orange">-</button>
           </div>
 
           <div id="fourth-row">
-            <button id="one">1</button>
-            <button id="two">2</button>
-            <button id="three">3</button>
-            <button id="add" class="orange">+</button>
+            <button type="button" id="one" value="1">1</button>
+            <button type="button" id="two" value="2">2</button>
+            <button type="button" id="three" value="3">3</button>
+            <button type="button" id="add" value="+" class="orange">+</button>
           </div>
 
           <div id="fifth-row">
-            <button id="zero">0</button>
-            <button id="dot">.</button>
-            <button id="equals" class="orange">=</button>
+            <button type="button" id="zero" value="0">0</button>
+            <button type="button" id="dot" value=".">.</button>
+            <button type="button" id="equals" value="=" class="orange">
+              =
+            </button>
           </div>
         </div>
       </div>

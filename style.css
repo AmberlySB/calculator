@@ -1,90 +1,89 @@
 button {
-    display: flex;
-    flex: 1;
-    font-size: 40px;
-    font-weight: 900;
-    justify-content: center;
-    align-items: center;
-    background-color: #444444;
-    color: white;
-    margin: 6px;
-    border-radius: 50%;
-    border-style: none;
-    padding: 0;
+  display: flex;
+  flex: 1;
+  font-size: 40px;
+  font-weight: 900;
+  justify-content: center;
+  align-items: center;
+  background-color: #444444;
+  color: white;
+  margin: 6px;
+  border-radius: 50%;
+  border-style: none;
+  padding: 0;
 }
 
 #container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #calculator {
-    display: flex;
-    flex-direction: column;
-    background-color: black;
-    border: 5px solid lightgray;
-    height: 580px;
-    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  border: 5px solid lightgray;
+  height: 580px;
+  box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.6);
 }
 
 #display {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    color: white;
-    text-align: end;
-    font-size: 60px;
-    width: 350px;
-    height: 75px;
-    margin: 10px 20px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  color: white;
+  text-align: end;
+  font-size: 60px;
+  width: 350px;
+  height: 75px;
+  margin: 10px 20px;
 }
 
 #button-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 10px;
 }
 
 #first-row {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 #second-row {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 #third-row {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 #fourth-row {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 #fifth-row {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 #zero {
-    flex: 1.90;
-    justify-content: start;
-    border-radius: 50px;
-    padding-left: 20px;
-
+  flex: 1.9;
+  justify-content: start;
+  border-radius: 50px;
+  padding-left: 20px;
 }
 
 .orange {
-    background-color: orange;
+  background-color: orange;
 }
 
 .gray {
-    background-color: #999999;
+  background-color: #999999;
 }

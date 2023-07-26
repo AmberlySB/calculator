@@ -28,41 +28,31 @@ function populateDisplay() {
     this.textContent === '.'
   ) {
     if (displayValue === undefined) {
-      console.log('undefined: ', typeof displayValue);
       if (this.textContent === '.') {
         displayValue = '0' + this.textContent;
         digits.push('0');
-        console.log('digits: ', digits);
       } else {
         displayValue = this.textContent;
         digits.push(this.textContent);
-        console.log('digits: ', digits);
       }
     } else if (digits.length < 9) {
       const split = displayValue.split('');
       const checkDot = split.filter((dot) => dot === '.');
       if (checkDot.join('') === '.') {
-        console.log('dot status', checkDot.join(''));
         if (this.textContent === '.') {
-          console.log('test', this.textContent);
           displayValue = displayValue;
         } else {
-          console.log('high mom');
           displayValue = displayValue + this.textContent;
           digits.push(this.textContent);
-          console.log('digits: ', digits);
         }
       } else if (this.textContent === '.') {
         displayValue = displayValue + this.textContent;
       } else {
-        console.log('hello world');
         displayValue = displayValue + this.textContent;
         digits.push(this.textContent);
-        console.log('digits-end: ', digits);
       }
     }
     display.textContent = displayValue;
-    console.log(displayValue);
   }
 }
 

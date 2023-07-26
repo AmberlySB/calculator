@@ -114,3 +114,8 @@ input:hover {
 .gray {
   background-color: #999999;
 }
+
+.reverse {
+  background-color: white;
+  color: orange;
+}

@@ -100,6 +100,7 @@ function populateDisplay() {
     } else if (operandA === undefined) {
       operandA = displayValue;
       operator = this.value;
+      this.classList.add('reverse');
       displayValue = '';
       digits.length = 0;
       operandB = undefined;
@@ -116,6 +117,7 @@ function populateDisplay() {
       displayValue = '';
       digits.length = 0;
       operandA = undefined;
+      this.classList.add('reverse');
       console.log('A: ', operandA, 'B: ', operandB, 'operator: ', operator);
     }
   }

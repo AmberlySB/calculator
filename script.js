@@ -32,9 +32,225 @@ let previousOperator;
 const digits = [];
 
 function calcButtons() {
+  const thisValue = this.value;
   if (this.value === '0') {
-    const thisValue = this.value;
     btnZero(thisValue);
+  } else if (this.value === '1') {
+    btnOne(thisValue);
+  } else if (this.value === '2') {
+    btnTwo(thisValue);
+  } else if (this.value === '3') {
+    btnThree(thisValue);
+  } else if (this.value === '4') {
+    btnFour(thisValue);
+  } else if (this.value === '5') {
+    btnFive(thisValue);
+  } else if (this.value === '6') {
+    btnSix(thisValue);
+  } else if (this.value === '7') {
+    btnSeven(thisValue);
+  } else if (this.value === '8') {
+    btnEight(thisValue);
+  } else if (this.value === '9') {
+    btnNine(thisValue);
+  }
+}
+
+function btnNine(nine) {
+  if (displayValue === undefined) {
+    displayValue = nine;
+    digits.push(nine);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = nine;
+      digits.pop();
+      digits.push(nine);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + nine;
+      digits.push(nine);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnEight(eight) {
+  if (displayValue === undefined) {
+    displayValue = eight;
+    digits.push(eight);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = eight;
+      digits.pop();
+      digits.push(eight);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + eight;
+      digits.push(eight);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnSeven(seven) {
+  if (displayValue === undefined) {
+    displayValue = seven;
+    digits.push(seven);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = seven;
+      digits.pop();
+      digits.push(seven);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + seven;
+      digits.push(seven);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnSix(six) {
+  if (displayValue === undefined) {
+    displayValue = six;
+    digits.push(six);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = six;
+      digits.pop();
+      digits.push(six);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + six;
+      digits.push(six);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnFive(five) {
+  if (displayValue === undefined) {
+    displayValue = five;
+    digits.push(five);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = five;
+      digits.pop();
+      digits.push(five);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + five;
+      digits.push(five);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnFour(four) {
+  if (displayValue === undefined) {
+    displayValue = four;
+    digits.push(four);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = four;
+      digits.pop();
+      digits.push(four);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + four;
+      digits.push(four);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnThree(three) {
+  if (displayValue === undefined) {
+    displayValue = three;
+    digits.push(three);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = three;
+      digits.pop();
+      digits.push(three);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + three;
+      digits.push(three);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnTwo(two) {
+  if (displayValue === undefined) {
+    displayValue = two;
+    digits.push(two);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = two;
+      digits.pop();
+      digits.push(two);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + two;
+      digits.push(two);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
+  }
+}
+
+function btnOne(one) {
+  if (displayValue === undefined) {
+    displayValue = one;
+    digits.push(one);
+    populateDisplay();
+    console.log('display: ', displayValue);
+  } else if (digits.length < 9) {
+    if (displayValue === '0') {
+      displayValue = one;
+      digits.pop();
+      digits.push(one);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    } else {
+      displayValue = displayValue + one;
+      digits.push(one);
+      populateDisplay();
+      console.log('display: ', displayValue);
+    }
   }
 }
 
@@ -45,11 +261,13 @@ function btnZero(zero) {
     populateDisplay();
     console.log('display: ', displayValue, 'digits: ', digits);
   } else if (digits.length < 9) {
-    if (digits.filter((element) => element === '0')) {
-      console.log('if digits');
+    const zeroFilter = digits.filter((element) => element === '0');
+    if (displayValue === '0') {
+      console.log('if zero', zeroFilter);
       return;
     } else {
       displayValue = displayValue + zero;
+      digits.push(zero);
       populateDisplay();
       console.log('display: ', displayValue);
     }

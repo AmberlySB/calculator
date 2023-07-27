@@ -56,16 +56,8 @@ function populateDisplay() {
         displayValue = displayValue + this.value;
       } else {
         console.log('you are here');
-        if (
-          addBtn.classList.contains('reverse') ||
-          subtractBtn.classList.contains('reverse') ||
-          multiplyBtn.classList.contains('reverse') ||
-          divideBtn.classList.contains('reverse')
-        ) {
-          addBtn.classList.remove('reverse');
-          subtractBtn.classList.remove('reverse');
-          multiplyBtn.classList.remove('reverse');
-          divideBtn.classList.remove('reverse');
+        if (checkReverse()) {
+          removeReverse();
         }
         displayValue = displayValue + this.value;
         digits.push(this.value);
@@ -137,4 +129,24 @@ function multiply(a, b) {
 
 function divide(a, b) {
   return a / b;
+}
+
+function checkReverse() {
+  if (
+    addBtn.classList.contains('reverse') ||
+    subtractBtn.classList.contains('reverse') ||
+    multiplyBtn.classList.contains('reverse') ||
+    divideBtn.classList.contains('reverse')
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function removeReverse() {
+  addBtn.classList.remove('reverse');
+  subtractBtn.classList.remove('reverse');
+  multiplyBtn.classList.remove('reverse');
+  divideBtn.classList.remove('reverse');
 }

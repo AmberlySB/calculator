@@ -29,30 +29,70 @@ let operandTemp;
 let operator;
 let previousOperator;
 //this array is used to check if the display has reached it's max capacity for characters (9)
-const digits = [];
+let digits = [];
+
+function populateDisplay() {
+  display = document.getElementById('display');
+  if (displayValue > 999999999) {
+    display.textContent = 'ERROR';
+  } else {
+    display.textContent = displayValue;
+  }
+}
 
 function calcButtons() {
   const thisValue = this.value;
   if (this.value === '0') {
+    removeReverse();
     btnZero(thisValue);
   } else if (this.value === '1') {
+    removeReverse();
     btnOne(thisValue);
   } else if (this.value === '2') {
+    removeReverse();
     btnTwo(thisValue);
   } else if (this.value === '3') {
+    removeReverse();
     btnThree(thisValue);
   } else if (this.value === '4') {
+    removeReverse();
     btnFour(thisValue);
   } else if (this.value === '5') {
+    removeReverse();
     btnFive(thisValue);
   } else if (this.value === '6') {
+    removeReverse();
     btnSix(thisValue);
   } else if (this.value === '7') {
+    removeReverse();
     btnSeven(thisValue);
   } else if (this.value === '8') {
+    removeReverse();
     btnEight(thisValue);
   } else if (this.value === '9') {
+    removeReverse();
     btnNine(thisValue);
+  } else if (this.value === '+') {
+    this.classList.add('reverse');
+    btnAdd(thisValue);
+  }
+}
+
+function btnAdd(add) {
+  if (displayValue === undefined) {
+    displayValue = '0';
+    operator = add;
+  } else if (operandA === undefined) {
+    operandA = displayValue;
+    operator = add;
+    digits = [];
+    displayValue = '';
+  } else if (operandA != undefined && operandB === undefined) {
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    digits = [];
+    displayValue = '';
   }
 }
 
@@ -274,11 +314,6 @@ function btnZero(zero) {
   }
 }
 
-function populateDisplay() {
-  display = document.getElementById('display');
-  display.textContent = displayValue;
-}
-
 // function populateDisplay() {
 //   const display = document.getElementById('display');
 //   if (+this.value > -1 || +this.value < 10 || this.value === '.') {
@@ -403,22 +438,16 @@ function divide(a, b) {
   return a / b;
 }
 
-function checkReverse() {
+function removeReverse() {
   if (
     addBtn.classList.contains('reverse') ||
     subtractBtn.classList.contains('reverse') ||
     multiplyBtn.classList.contains('reverse') ||
     divideBtn.classList.contains('reverse')
   ) {
-    return true;
-  } else {
-    return false;
+    addBtn.classList.remove('reverse');
+    subtractBtn.classList.remove('reverse');
+    multiplyBtn.classList.remove('reverse');
+    divideBtn.classList.remove('reverse');
   }
-}
-
-function removeReverse() {
-  addBtn.classList.remove('reverse');
-  subtractBtn.classList.remove('reverse');
-  multiplyBtn.classList.remove('reverse');
-  divideBtn.classList.remove('reverse');
 }

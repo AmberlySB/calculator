@@ -3,7 +3,6 @@ let operandA;
 let operandB;
 let operandTemp;
 let operator;
-let previousOperator;
 //this array is used to check if the display has reached it's max capacity for characters (9)
 let digits = [];
 
@@ -65,16 +64,22 @@ function calcButtons() {
   } else if (this.value === '9') {
     removeReverse();
     nineBtn(thisValue);
+  } else if (this.value === '.') {
+    removeReverse();
+    decimalBtn(thisValue);
   } else if (this.value === '+') {
     this.classList.add('reverse');
     addBtn(thisValue);
+  } else if (this.value === '-') {
+    this.classList.add('reverse');
+    subtractBtn(thisValue);
   } else if (this.value === '=') {
     removeReverse();
-    equalsBtn(thisValue);
+    equalsBtn();
   }
 }
 
-function equalsBtn(equals) {
+function equalsBtn() {
   if (displayValue === undefined) {
     return;
   } else if (operandA === undefined) {
@@ -135,6 +140,19 @@ function addBtn(add) {
     populateDisplay();
     digits = [];
     displayValue = '';
+  }
+}
+
+function decimalBtn(decimal) {
+  if (displayValue === undefined) {
+    displayValue = '0' + decimal;
+    populateDisplay();
+  } else if (displayValue.includes('.')) {
+    return;
+  } else {
+    console.log('decimal');
+    displayValue = displayValue + decimal;
+    populateDisplay();
   }
 }
 

@@ -1,27 +1,3 @@
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-  button.addEventListener('click', calcButtons);
-});
-
-const addId = document.getElementById('add');
-const subtractId = document.getElementById('subtract');
-const multiplyId = document.getElementById('multiply');
-const divideId = document.getElementById('divide');
-
-// let a = 10;
-// let b = 5;
-// let op = '/';
-
-function operate(a, b, op) {
-  if (op === '+') result = add(+a, +b).toString();
-  else if (op === '-') result = subtract(a, b).toString();
-  else if (op === '*') result = multiply(a, b).toString();
-  else if (op === '/') result = divide(a, b).toString();
-  return result;
-}
-
-// console.log(operate(a, b, op));
-
 let displayValue;
 let operandA;
 let operandB;
@@ -30,6 +6,23 @@ let operator;
 let previousOperator;
 //this array is used to check if the display has reached it's max capacity for characters (9)
 let digits = [];
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+  button.addEventListener('click', calcButtons);
+});
+const addId = document.getElementById('add');
+const subtractId = document.getElementById('subtract');
+const multiplyId = document.getElementById('multiply');
+const divideId = document.getElementById('divide');
+
+function operate(a, b, op) {
+  if (op === '+') result = add(+a, +b).toString();
+  else if (op === '-') result = subtract(a, b).toString();
+  else if (op === '*') result = multiply(a, b).toString();
+  else if (op === '/') result = divide(a, b).toString();
+  return result;
+}
 
 function populateDisplay() {
   display = document.getElementById('display');
@@ -99,13 +92,7 @@ function equalsBtn(equals) {
     digits = [];
     displayValue = '';
     console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
-  } //else if (displayValue === '') {
-  // displayValue = operandA;
-  // displayValue = operate(operandA, operandB, operator);
-  // populateDisplay();
-  // digits = [];
-  // displayValue = '';}
-  else {
+  } else {
     console.log(
       'else opA: ',
       operandA,

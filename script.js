@@ -3,10 +3,10 @@ buttons.forEach((button) => {
   button.addEventListener('click', calcButtons);
 });
 
-const addBtn = document.getElementById('add');
-const subtractBtn = document.getElementById('subtract');
-const multiplyBtn = document.getElementById('multiply');
-const divideBtn = document.getElementById('divide');
+const addId = document.getElementById('add');
+const subtractId = document.getElementById('subtract');
+const multiplyId = document.getElementById('multiply');
+const divideId = document.getElementById('divide');
 
 // let a = 10;
 // let b = 5;
@@ -44,50 +44,105 @@ function calcButtons() {
   const thisValue = this.value;
   if (this.value === '0') {
     removeReverse();
-    btnZero(thisValue);
+    zeroBtn(thisValue);
   } else if (this.value === '1') {
     removeReverse();
-    btnOne(thisValue);
+    oneBtn(thisValue);
   } else if (this.value === '2') {
     removeReverse();
-    btnTwo(thisValue);
+    twoBtn(thisValue);
   } else if (this.value === '3') {
     removeReverse();
-    btnThree(thisValue);
+    threeBtn(thisValue);
   } else if (this.value === '4') {
     removeReverse();
-    btnFour(thisValue);
+    fourBtn(thisValue);
   } else if (this.value === '5') {
     removeReverse();
-    btnFive(thisValue);
+    fiveBtn(thisValue);
   } else if (this.value === '6') {
     removeReverse();
-    btnSix(thisValue);
+    sixBtn(thisValue);
   } else if (this.value === '7') {
     removeReverse();
-    btnSeven(thisValue);
+    sevenBtn(thisValue);
   } else if (this.value === '8') {
     removeReverse();
-    btnEight(thisValue);
+    eightBtn(thisValue);
   } else if (this.value === '9') {
     removeReverse();
-    btnNine(thisValue);
+    nineBtn(thisValue);
   } else if (this.value === '+') {
     this.classList.add('reverse');
-    btnAdd(thisValue);
+    addBtn(thisValue);
+  } else if (this.value === '=') {
+    removeReverse();
+    equalsBtn(thisValue);
   }
 }
 
-function btnAdd(add) {
+function equalsBtn(equals) {
+  if (displayValue === undefined) {
+    return;
+  } else if (operandA === undefined) {
+    return;
+  } else if (operandB === undefined) {
+    console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
+    if (displayValue === '') {
+      operandB = operandA;
+    } else {
+      operandB = displayValue;
+    }
+    displayValue = operate(operandA, operandB, operator);
+    populateDisplay();
+    operandA = displayValue;
+    digits = [];
+    displayValue = '';
+    console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
+  } //else if (displayValue === '') {
+  // displayValue = operandA;
+  // displayValue = operate(operandA, operandB, operator);
+  // populateDisplay();
+  // digits = [];
+  // displayValue = '';}
+  else {
+    console.log(
+      'else opA: ',
+      operandA,
+      'opB: ',
+      operandB,
+      'dV: ',
+      displayValue
+    );
+    displayValue = operandA;
+    displayValue = operate(displayValue, operandB, operator);
+    populateDisplay();
+    operandA = displayValue;
+    digits = [];
+    displayValue = '';
+    console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
+  }
+}
+
+function addBtn(add) {
   if (displayValue === undefined) {
     displayValue = '0';
     operator = add;
   } else if (operandA === undefined) {
+    console.log('opA: ', operandA, 'op: ', operator);
     operandA = displayValue;
     operator = add;
     digits = [];
     displayValue = '';
+    console.log('opA: ', operandA, 'op: ', operator);
   } else if (operandA != undefined && operandB === undefined) {
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    digits = [];
+    displayValue = '';
+  } else {
+    operandB = undefined;
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
     populateDisplay();
@@ -96,7 +151,7 @@ function btnAdd(add) {
   }
 }
 
-function btnNine(nine) {
+function nineBtn(nine) {
   if (displayValue === undefined) {
     displayValue = nine;
     digits.push(nine);
@@ -118,7 +173,7 @@ function btnNine(nine) {
   }
 }
 
-function btnEight(eight) {
+function eightBtn(eight) {
   if (displayValue === undefined) {
     displayValue = eight;
     digits.push(eight);
@@ -140,7 +195,7 @@ function btnEight(eight) {
   }
 }
 
-function btnSeven(seven) {
+function sevenBtn(seven) {
   if (displayValue === undefined) {
     displayValue = seven;
     digits.push(seven);
@@ -162,7 +217,7 @@ function btnSeven(seven) {
   }
 }
 
-function btnSix(six) {
+function sixBtn(six) {
   if (displayValue === undefined) {
     displayValue = six;
     digits.push(six);
@@ -184,7 +239,7 @@ function btnSix(six) {
   }
 }
 
-function btnFive(five) {
+function fiveBtn(five) {
   if (displayValue === undefined) {
     displayValue = five;
     digits.push(five);
@@ -206,7 +261,7 @@ function btnFive(five) {
   }
 }
 
-function btnFour(four) {
+function fourBtn(four) {
   if (displayValue === undefined) {
     displayValue = four;
     digits.push(four);
@@ -228,7 +283,7 @@ function btnFour(four) {
   }
 }
 
-function btnThree(three) {
+function threeBtn(three) {
   if (displayValue === undefined) {
     displayValue = three;
     digits.push(three);
@@ -250,7 +305,7 @@ function btnThree(three) {
   }
 }
 
-function btnTwo(two) {
+function twoBtn(two) {
   if (displayValue === undefined) {
     displayValue = two;
     digits.push(two);
@@ -272,7 +327,7 @@ function btnTwo(two) {
   }
 }
 
-function btnOne(one) {
+function oneBtn(one) {
   if (displayValue === undefined) {
     displayValue = one;
     digits.push(one);
@@ -294,7 +349,7 @@ function btnOne(one) {
   }
 }
 
-function btnZero(zero) {
+function zeroBtn(zero) {
   if (displayValue === undefined) {
     displayValue = zero;
     digits.push(zero);
@@ -440,14 +495,14 @@ function divide(a, b) {
 
 function removeReverse() {
   if (
-    addBtn.classList.contains('reverse') ||
-    subtractBtn.classList.contains('reverse') ||
-    multiplyBtn.classList.contains('reverse') ||
-    divideBtn.classList.contains('reverse')
+    addId.classList.contains('reverse') ||
+    subtractId.classList.contains('reverse') ||
+    multiplyId.classList.contains('reverse') ||
+    divideId.classList.contains('reverse')
   ) {
-    addBtn.classList.remove('reverse');
-    subtractBtn.classList.remove('reverse');
-    multiplyBtn.classList.remove('reverse');
-    divideBtn.classList.remove('reverse');
+    addId.classList.remove('reverse');
+    subtractId.classList.remove('reverse');
+    multiplyId.classList.remove('reverse');
+    divideId.classList.remove('reverse');
   }
 }

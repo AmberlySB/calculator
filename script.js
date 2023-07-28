@@ -68,9 +68,11 @@ function calcButtons() {
     removeReverse();
     decimalBtn(thisValue);
   } else if (this.value === '+') {
+    removeReverse();
     this.classList.add('reverse');
     addBtn(thisValue);
   } else if (this.value === '-') {
+    removeReverse();
     this.classList.add('reverse');
     subtractBtn(thisValue);
   } else if (this.value === '=') {
@@ -116,6 +118,36 @@ function equalsBtn() {
   }
 }
 
+function subtractBtn(subtract) {
+  if (displayValue === undefined) {
+    displayValue = '0';
+    operator = subtract;
+  } else if (operandA === undefined) {
+    console.log('opA: ', operandA, 'op: ', operator);
+    operandA = displayValue;
+    operator = subtract;
+    digits = [];
+    displayValue = '';
+    console.log('opA: ', operandA, 'op: ', operator);
+  } else if (operandA != undefined && operandB === undefined) {
+    console.log('&&');
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    operator = subtract;
+    digits = [];
+    displayValue = '';
+  } else {
+    operandB = undefined;
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    operator = subtract;
+    digits = [];
+    displayValue = '';
+  }
+}
+
 function addBtn(add) {
   if (displayValue === undefined) {
     displayValue = '0';
@@ -131,20 +163,24 @@ function addBtn(add) {
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
     populateDisplay();
+    operator = add;
     digits = [];
     displayValue = '';
   } else {
+    console.log('op: ', operator);
     operandB = undefined;
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
     populateDisplay();
+    operator = add;
     digits = [];
     displayValue = '';
+    console.log('op: ', operator);
   }
 }
 
 function decimalBtn(decimal) {
-  if (displayValue === undefined) {
+  if (displayValue === undefined || displayValue === '') {
     displayValue = '0' + decimal;
     populateDisplay();
   } else if (displayValue.includes('.')) {

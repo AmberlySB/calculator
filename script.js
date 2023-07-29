@@ -16,6 +16,7 @@ const multiplyId = document.getElementById('multiply');
 const divideId = document.getElementById('divide');
 
 function operate(a, b, op) {
+  console.log('opA: ', a, 'opB: ', b, 'op: ', op, 'dV: ', displayValue);
   if (op === '+') result = add(+a, +b).toString();
   else if (op === '-') result = subtract(a, b).toString();
   else if (op === '*') result = multiply(a, b).toString();
@@ -28,6 +29,7 @@ function populateDisplay() {
   if (displayValue > 999999999) {
     display.textContent = 'ERROR';
   } else {
+    console.log('pD()', displayValue);
     display.textContent = displayValue;
   }
 }
@@ -95,16 +97,6 @@ function equalsBtn() {
   } else if (operandA === undefined) {
     return;
   } else if (operandB === undefined) {
-    console.log(
-      'opA: ',
-      operandA,
-      'opB: ',
-      operandB,
-      'op: ',
-      operator,
-      'dV: ',
-      displayValue
-    );
     if (displayValue === '') {
       operandB = operandA;
     } else {
@@ -125,33 +117,19 @@ function equalsBtn() {
       'dV: ',
       displayValue
     );
+  } else if (displayValue === '') {
+    console.log('error');
+    displayValue = operate(operandA, operandB, operator);
+    populateDisplay();
+    operandA = displayValue;
+    digits = [];
+    displayValue = '';
   } else {
-    console.log(
-      'opA: ',
-      operandA,
-      'opB: ',
-      operandB,
-      'op: ',
-      operator,
-      'dV: ',
-      displayValue
-    );
-    displayValue = operandA;
     displayValue = operate(displayValue, operandB, operator);
     populateDisplay();
     operandA = displayValue;
     digits = [];
     displayValue = '';
-    console.log(
-      'opA: ',
-      operandA,
-      'opB: ',
-      operandB,
-      'op: ',
-      operator,
-      'dV: ',
-      displayValue
-    );
   }
 }
 
@@ -161,14 +139,13 @@ function divideBtn(divide) {
     operator = divide;
   } else if (displayValue === '') {
     operator = divide;
+    operandB = undefined;
     return;
   } else if (operandA === undefined) {
-    console.log('opA: ', operandA, 'op: ', operator);
     operandA = displayValue;
     operator = divide;
     digits = [];
     displayValue = '';
-    console.log('opA: ', operandA, 'op: ', operator);
   } else if (operandA != undefined && operandB === undefined) {
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
@@ -177,7 +154,6 @@ function divideBtn(divide) {
     digits = [];
     displayValue = '';
   } else {
-    console.log('op: ', operator);
     operandB = undefined;
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
@@ -185,7 +161,6 @@ function divideBtn(divide) {
     operator = divide;
     digits = [];
     displayValue = '';
-    console.log('op: ', operator);
   }
 }
 
@@ -195,6 +170,7 @@ function multiplyBtn(multiply) {
     operator = multiply;
   } else if (displayValue === '') {
     operator = multiply;
+    operandB = undefined;
     return;
   } else if (operandA === undefined) {
     console.log('opA: ', operandA, 'op: ', operator);
@@ -204,7 +180,6 @@ function multiplyBtn(multiply) {
     displayValue = '';
     console.log('opA: ', operandA, 'op: ', operator);
   } else if (operandA != undefined && operandB === undefined) {
-    console.log('&&');
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
     populateDisplay();
@@ -228,16 +203,14 @@ function subtractBtn(subtract) {
     operator = subtract;
   } else if (displayValue === '') {
     operator = subtract;
+    operandB = undefined;
     return;
   } else if (operandA === undefined) {
-    console.log('opA: ', operandA, 'op: ', operator);
     operandA = displayValue;
     operator = subtract;
     digits = [];
     displayValue = '';
-    console.log('opA: ', operandA, 'op: ', operator);
   } else if (operandA != undefined && operandB === undefined) {
-    console.log('&&');
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
     populateDisplay();
@@ -261,13 +234,13 @@ function addBtn(add) {
     operator = add;
   } else if (displayValue === '') {
     operator = add;
+    operandB = undefined;
     return;
   } else if (operandA === undefined) {
     operandA = displayValue;
     operator = add;
     digits = [];
     displayValue = '';
-    console.log('opA: ', operandA, 'opB: ', operandB, 'op: ', operator);
   } else if (operandA != undefined && operandB === undefined) {
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
@@ -276,7 +249,7 @@ function addBtn(add) {
     digits = [];
     displayValue = '';
   } else {
-    console.log('op: ', operator);
+    console.log('+else');
     operandB = undefined;
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
@@ -284,7 +257,6 @@ function addBtn(add) {
     operator = add;
     digits = [];
     displayValue = '';
-    console.log('op: ', operator);
   }
 }
 
@@ -306,19 +278,16 @@ function nineBtn(nine) {
     displayValue = nine;
     digits.push(nine);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = nine;
       digits.pop();
       digits.push(nine);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + nine;
       digits.push(nine);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -328,19 +297,16 @@ function eightBtn(eight) {
     displayValue = eight;
     digits.push(eight);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = eight;
       digits.pop();
       digits.push(eight);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + eight;
       digits.push(eight);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -350,19 +316,16 @@ function sevenBtn(seven) {
     displayValue = seven;
     digits.push(seven);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = seven;
       digits.pop();
       digits.push(seven);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + seven;
       digits.push(seven);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -372,19 +335,16 @@ function sixBtn(six) {
     displayValue = six;
     digits.push(six);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = six;
       digits.pop();
       digits.push(six);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + six;
       digits.push(six);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -394,19 +354,16 @@ function fiveBtn(five) {
     displayValue = five;
     digits.push(five);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = five;
       digits.pop();
       digits.push(five);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + five;
       digits.push(five);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -416,19 +373,16 @@ function fourBtn(four) {
     displayValue = four;
     digits.push(four);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = four;
       digits.pop();
       digits.push(four);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + four;
       digits.push(four);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -438,19 +392,16 @@ function threeBtn(three) {
     displayValue = three;
     digits.push(three);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = three;
       digits.pop();
       digits.push(three);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + three;
       digits.push(three);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -460,19 +411,16 @@ function twoBtn(two) {
     displayValue = two;
     digits.push(two);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = two;
       digits.pop();
       digits.push(two);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + two;
       digits.push(two);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -482,19 +430,16 @@ function oneBtn(one) {
     displayValue = one;
     digits.push(one);
     populateDisplay();
-    console.log('display: ', displayValue);
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = one;
       digits.pop();
       digits.push(one);
       populateDisplay();
-      console.log('display: ', displayValue);
     } else {
       displayValue = displayValue + one;
       digits.push(one);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
@@ -504,128 +449,16 @@ function zeroBtn(zero) {
     displayValue = zero;
     digits.push(zero);
     populateDisplay();
-    console.log('display: ', displayValue, 'digits: ', digits);
   } else if (digits.length < 9) {
-    const zeroFilter = digits.filter((element) => element === '0');
     if (displayValue === '0') {
-      console.log('if zero', zeroFilter);
       return;
     } else {
       displayValue = displayValue + zero;
       digits.push(zero);
       populateDisplay();
-      console.log('display: ', displayValue);
     }
   }
 }
-
-// function populateDisplay() {
-//   const display = document.getElementById('display');
-//   if (+this.value > -1 || +this.value < 10 || this.value === '.') {
-//     // displayValue starts undefined, this logic initializes it based on user input
-//     if (displayValue === undefined) {
-//       if (this.value === '.') {
-//         displayValue = '0' + this.value;
-//         digits.push('0');
-//       } else {
-//         displayValue = this.value;
-//         digits.push(this.value);
-//       }
-//     } else if (digits.length < 9) {
-//       const split = displayValue.split('');
-//       const checkDot = split.filter((dot) => dot === '.');
-//       //checks to see if a decimal is present and prevents additional decimals from being added
-//       if (checkDot.join('') === '.') {
-//         if (this.value === '.') {
-//           displayValue = displayValue;
-//         } else {
-//           displayValue = displayValue + this.value;
-//           digits.push(this.value);
-//         }
-//       } else if (this.value === '.') {
-//         displayValue = displayValue + this.value;
-//       } else {
-//         if (checkReverse()) {
-//           removeReverse();
-//         }
-//         displayValue = displayValue + this.value;
-//         digits.push(this.value);
-//       }
-//     }
-//     display.textContent = displayValue;
-//     console.log('A: ', operandA, 'B: ', operandB, 'operator: ', operator);
-//   } else if (
-//     this.value === '+' ||
-//     this.value === '-' ||
-//     this.value === '*' ||
-//     this.value === '/'
-//   ) {
-//     if (operandA === undefined && operandB != undefined) {
-//       if (previousOperator === '=') {
-//         displayValue = '';
-//       }
-//       console.log('&&');
-//       operandA = operandTemp;
-//       operandB = displayValue;
-//       displayValue = operate(operandA, operandB, operator);
-//       display.textContent = displayValue;
-//       console.log(
-//         'Start |A: ',
-//         operandA,
-//         'operator: ',
-//         operator,
-//         'B: ',
-//         operandB
-//       );
-//       operator = this.value;
-//       this.classList.add('reverse');
-//       operandTemp = displayValue;
-//       displayValue = '';
-//       digits.length = 0;
-//       operandA = undefined;
-//     } else if (operandA === undefined) {
-//       console.log('A is undefined');
-//       operandA = displayValue;
-//       operator = this.value;
-//       this.classList.add('reverse');
-//       displayValue = '';
-//       digits.length = 0;
-//       operandB = undefined;
-//       console.log('this value: ', this.value, 'digits: ', digits);
-//       console.log('A: ', operandA, 'operator: ', operator);
-//     } else if (operandB === undefined) {
-//       console.log(' B is Undefined');
-//       console.log('A: ', operandA, 'B: ', operandB, 'operator: ', operator);
-//       operandB = displayValue;
-//       displayValue = operate(operandA, operandB, operator);
-//       display.textContent = displayValue;
-//       operator = this.value;
-//       this.classList.add('reverse');
-//       operandTemp = displayValue;
-//       displayValue = '';
-//       digits.length = 0;
-//       operandA = undefined;
-//       console.log('A: ', operandA, 'B: ', operandB, 'operator: ', operator);
-//     }
-//   } else if (this.value === '=') {
-//     console.log('A: ', operandA, 'B: ', operandB, 'operator: ', operator);
-//     if (operandA === undefined && operandB === undefined) {
-//       return;
-//     } else if (operandA === undefined) {
-//       previousOperator = '=';
-//       let tempDisplayValue = displayValue;
-//       displayValue = operate(tempDisplayValue, operandB, operator);
-//       display.textContent = displayValue;
-//       operandTemp = displayValue;
-//     } else if (operandB === undefined) {
-//       previousOperator = '=';
-//       operandB = displayValue;
-//       displayValue = operate(operandA, operandB, operator);
-//       display.textContent = displayValue;
-//       operandA = undefined;
-//     }
-//   }
-// }
 
 function add(a, b) {
   return a + b;

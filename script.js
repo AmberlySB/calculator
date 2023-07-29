@@ -75,6 +75,14 @@ function calcButtons() {
     removeReverse();
     this.classList.add('reverse');
     subtractBtn(thisValue);
+  } else if (this.value === '*') {
+    removeReverse();
+    this.classList.add('reverse');
+    multiplyBtn(thisValue);
+  } else if (this.value === '/') {
+    removeReverse();
+    this.classList.add('reverse');
+    divideBtn(thisValue);
   } else if (this.value === '=') {
     removeReverse();
     equalsBtn();
@@ -115,6 +123,36 @@ function equalsBtn() {
     digits = [];
     displayValue = '';
     console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
+  }
+}
+
+function multiplyBtn(multiply) {
+  if (displayValue === undefined) {
+    displayValue = '0';
+    operator = multiply;
+  } else if (operandA === undefined) {
+    console.log('opA: ', operandA, 'op: ', operator);
+    operandA = displayValue;
+    operator = multiply;
+    digits = [];
+    displayValue = '';
+    console.log('opA: ', operandA, 'op: ', operator);
+  } else if (operandA != undefined && operandB === undefined) {
+    console.log('&&');
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    operator = multiply;
+    digits = [];
+    displayValue = '';
+  } else {
+    operandB = undefined;
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    operator = multiply;
+    digits = [];
+    displayValue = '';
   }
 }
 

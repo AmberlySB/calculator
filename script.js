@@ -95,7 +95,16 @@ function equalsBtn() {
   } else if (operandA === undefined) {
     return;
   } else if (operandB === undefined) {
-    console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
+    console.log(
+      'opA: ',
+      operandA,
+      'opB: ',
+      operandB,
+      'op: ',
+      operator,
+      'dV: ',
+      displayValue
+    );
     if (displayValue === '') {
       operandB = operandA;
     } else {
@@ -106,13 +115,24 @@ function equalsBtn() {
     operandA = displayValue;
     digits = [];
     displayValue = '';
-    console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
-  } else {
     console.log(
-      'else opA: ',
+      'opA: ',
       operandA,
       'opB: ',
       operandB,
+      'op: ',
+      operator,
+      'dV: ',
+      displayValue
+    );
+  } else {
+    console.log(
+      'opA: ',
+      operandA,
+      'opB: ',
+      operandB,
+      'op: ',
+      operator,
       'dV: ',
       displayValue
     );
@@ -122,7 +142,50 @@ function equalsBtn() {
     operandA = displayValue;
     digits = [];
     displayValue = '';
-    console.log('opA: ', operandA, 'opB: ', operandB, 'dV: ', displayValue);
+    console.log(
+      'opA: ',
+      operandA,
+      'opB: ',
+      operandB,
+      'op: ',
+      operator,
+      'dV: ',
+      displayValue
+    );
+  }
+}
+
+function divideBtn(divide) {
+  if (displayValue === undefined) {
+    displayValue = '0';
+    operator = divide;
+  } else if (displayValue === '') {
+    operator = divide;
+    return;
+  } else if (operandA === undefined) {
+    console.log('opA: ', operandA, 'op: ', operator);
+    operandA = displayValue;
+    operator = divide;
+    digits = [];
+    displayValue = '';
+    console.log('opA: ', operandA, 'op: ', operator);
+  } else if (operandA != undefined && operandB === undefined) {
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    operator = divide;
+    digits = [];
+    displayValue = '';
+  } else {
+    console.log('op: ', operator);
+    operandB = undefined;
+    displayValue = operate(operandA, displayValue, operator);
+    operandA = displayValue;
+    populateDisplay();
+    operator = divide;
+    digits = [];
+    displayValue = '';
+    console.log('op: ', operator);
   }
 }
 
@@ -130,6 +193,9 @@ function multiplyBtn(multiply) {
   if (displayValue === undefined) {
     displayValue = '0';
     operator = multiply;
+  } else if (displayValue === '') {
+    operator = multiply;
+    return;
   } else if (operandA === undefined) {
     console.log('opA: ', operandA, 'op: ', operator);
     operandA = displayValue;
@@ -160,6 +226,9 @@ function subtractBtn(subtract) {
   if (displayValue === undefined) {
     displayValue = '0';
     operator = subtract;
+  } else if (displayValue === '') {
+    operator = subtract;
+    return;
   } else if (operandA === undefined) {
     console.log('opA: ', operandA, 'op: ', operator);
     operandA = displayValue;
@@ -190,13 +259,15 @@ function addBtn(add) {
   if (displayValue === undefined) {
     displayValue = '0';
     operator = add;
+  } else if (displayValue === '') {
+    operator = add;
+    return;
   } else if (operandA === undefined) {
-    console.log('opA: ', operandA, 'op: ', operator);
     operandA = displayValue;
     operator = add;
     digits = [];
     displayValue = '';
-    console.log('opA: ', operandA, 'op: ', operator);
+    console.log('opA: ', operandA, 'opB: ', operandB, 'op: ', operator);
   } else if (operandA != undefined && operandB === undefined) {
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;

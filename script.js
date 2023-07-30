@@ -26,7 +26,7 @@ function operate(a, b, op) {
 
 function populateDisplay() {
   display = document.getElementById('display');
-  if (displayValue > 999999999) {
+  if (displayValue > 999999999 || displayValue < -999999999) {
     display.textContent = 'ERROR';
   } else {
     console.log('pD()', displayValue);
@@ -90,6 +90,34 @@ function calcButtons() {
     equalsBtn();
   } else if (this.value === '%') {
     percentBtn(thisValue);
+  } else if (this.value === '+/-') {
+    positiveNegativeBtn();
+  }
+}
+
+function positiveNegativeBtn() {
+  if (operandA != undefined && operandB != undefined && displayValue === '') {
+    displayValue = operandA;
+    displayValue = displayValue * -1;
+    populateDisplay();
+  } else if (displayValue === undefined || displayValue === '') {
+    console.log('+/- 1', 'dv: ', displayValue);
+    displayValue = '-0';
+    populateDisplay();
+  } else {
+    if (displayValue === '0') {
+      console.log('+/- 2', 'dv: ', displayValue);
+      displayValue = '-0';
+      populateDisplay();
+    } else if (displayValue === '-0') {
+      console.log('+/- 3', 'dv: ', displayValue);
+      displayValue = '0';
+      populateDisplay();
+    } else {
+      console.log('+/- 4', 'dv: ', displayValue);
+      displayValue = displayValue * -1;
+      populateDisplay();
+    }
   }
 }
 
@@ -224,9 +252,7 @@ function divideBtn(divide) {
     displayValue = '';
   } else {
     operandB = undefined;
-    displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
-    populateDisplay();
     operator = divide;
     digits = [];
     displayValue = '';
@@ -257,9 +283,7 @@ function multiplyBtn(multiply) {
     displayValue = '';
   } else {
     operandB = undefined;
-    displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
-    populateDisplay();
     operator = multiply;
     digits = [];
     displayValue = '';
@@ -287,10 +311,9 @@ function subtractBtn(subtract) {
     digits = [];
     displayValue = '';
   } else {
+    console.log('-5');
     operandB = undefined;
-    displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
-    populateDisplay();
     operator = subtract;
     digits = [];
     displayValue = '';
@@ -299,18 +322,22 @@ function subtractBtn(subtract) {
 
 function addBtn(add) {
   if (displayValue === undefined) {
+    console.log('+1');
     displayValue = '0';
     operator = add;
   } else if (displayValue === '') {
+    console.log('+2');
     operator = add;
     operandB = undefined;
     return;
   } else if (operandA === undefined) {
+    console.log('+3');
     operandA = displayValue;
     operator = add;
     digits = [];
     displayValue = '';
   } else if (operandA != undefined && operandB === undefined) {
+    console.log('+4');
     displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
     populateDisplay();
@@ -318,11 +345,9 @@ function addBtn(add) {
     digits = [];
     displayValue = '';
   } else {
-    console.log('+else');
+    console.log('+5');
     operandB = undefined;
-    displayValue = operate(operandA, displayValue, operator);
     operandA = displayValue;
-    populateDisplay();
     operator = add;
     digits = [];
     displayValue = '';
@@ -353,6 +378,11 @@ function nineBtn(nine) {
       digits.pop();
       digits.push(nine);
       populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -nine;
+      digits.pop();
+      digits.push(nine);
+      populateDisplay();
     } else {
       displayValue = displayValue + nine;
       digits.push(nine);
@@ -369,6 +399,11 @@ function eightBtn(eight) {
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = eight;
+      digits.pop();
+      digits.push(eight);
+      populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -eight;
       digits.pop();
       digits.push(eight);
       populateDisplay();
@@ -391,6 +426,11 @@ function sevenBtn(seven) {
       digits.pop();
       digits.push(seven);
       populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -seven;
+      digits.pop();
+      digits.push(seven);
+      populateDisplay();
     } else {
       displayValue = displayValue + seven;
       digits.push(seven);
@@ -407,6 +447,11 @@ function sixBtn(six) {
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = six;
+      digits.pop();
+      digits.push(six);
+      populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -six;
       digits.pop();
       digits.push(six);
       populateDisplay();
@@ -429,6 +474,11 @@ function fiveBtn(five) {
       digits.pop();
       digits.push(five);
       populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -five;
+      digits.pop();
+      digits.push(five);
+      populateDisplay();
     } else {
       displayValue = displayValue + five;
       digits.push(five);
@@ -445,6 +495,11 @@ function fourBtn(four) {
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = four;
+      digits.pop();
+      digits.push(four);
+      populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -four;
       digits.pop();
       digits.push(four);
       populateDisplay();
@@ -467,6 +522,11 @@ function threeBtn(three) {
       digits.pop();
       digits.push(three);
       populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -three;
+      digits.pop();
+      digits.push(three);
+      populateDisplay();
     } else {
       displayValue = displayValue + three;
       digits.push(three);
@@ -483,6 +543,11 @@ function twoBtn(two) {
   } else if (digits.length < 9) {
     if (displayValue === '0') {
       displayValue = two;
+      digits.pop();
+      digits.push(two);
+      populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -two;
       digits.pop();
       digits.push(two);
       populateDisplay();
@@ -505,6 +570,11 @@ function oneBtn(one) {
       digits.pop();
       digits.push(one);
       populateDisplay();
+    } else if (displayValue === '-0') {
+      displayValue = -one;
+      digits.pop();
+      digits.push(one);
+      populateDisplay();
     } else {
       displayValue = displayValue + one;
       digits.push(one);
@@ -520,6 +590,8 @@ function zeroBtn(zero) {
     populateDisplay();
   } else if (digits.length < 9) {
     if (displayValue === '0') {
+      return;
+    } else if (displayValue === '-0') {
       return;
     } else {
       displayValue = displayValue + zero;

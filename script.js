@@ -1,7 +1,7 @@
 let displayValue;
 let operandA;
 let operandB;
-let operandTemp;
+let previousBtn;
 let operator;
 //this array is used to check if the display has reached it's max capacity for characters (9)
 let digits = [];
@@ -88,6 +88,57 @@ function calcButtons() {
   } else if (this.value === '=') {
     removeReverse();
     equalsBtn();
+  } else if (this.value === '%') {
+    percentBtn(thisValue);
+  }
+}
+
+function percentBtn() {
+  if (displayValue === undefined) {
+    return;
+  } else if (operandA === undefined && operandB === undefined) {
+    console.log('1%');
+    displayValue = displayValue / 100;
+    populateDisplay();
+  } else if (operandA != undefined && operandB === undefined) {
+    if (operator === '+' || operator === '-') {
+      console.log(
+        '2% opA: ',
+        operandA,
+        'op',
+        operator,
+        'opB: ',
+        operandB,
+        'dv:',
+        displayValue
+      );
+      displayValue = (operandA * displayValue) / 100;
+      populateDisplay();
+      operandB = displayValue;
+    } else {
+      console.log('3%');
+      displayValue = displayValue / 100;
+      populateDisplay();
+      operandB = displayValue;
+    }
+  } else if (displayValue === '') {
+    console.log('4%');
+    displayValue = operandA / 100;
+    populateDisplay();
+  } else {
+    console.log(
+      '5% opA: ',
+      operandA,
+      'op',
+      operator,
+      'opB: ',
+      operandB,
+      'dv:',
+      displayValue
+    );
+    displayValue = (operandA * operandB) / 100;
+    populateDisplay();
+    operandB = displayValue;
   }
 }
 
@@ -108,7 +159,7 @@ function equalsBtn() {
     digits = [];
     displayValue = '';
     console.log(
-      'opA: ',
+      '=1 opA: ',
       operandA,
       'opB: ',
       operandB,
@@ -118,18 +169,36 @@ function equalsBtn() {
       displayValue
     );
   } else if (displayValue === '') {
-    console.log('error');
+    console.log('=2');
     displayValue = operate(operandA, operandB, operator);
     populateDisplay();
     operandA = displayValue;
     digits = [];
     displayValue = '';
   } else {
-    displayValue = operate(displayValue, operandB, operator);
-    populateDisplay();
-    operandA = displayValue;
-    digits = [];
-    displayValue = '';
+    console.log(
+      '=3 opA: ',
+      operandA,
+      'opB: ',
+      operandB,
+      'op: ',
+      operator,
+      'dV: ',
+      displayValue
+    );
+    if (operator === '+' || operator === '*') {
+      displayValue = operate(displayValue, operandA, operator);
+      populateDisplay();
+      operandA = displayValue;
+      digits = [];
+      displayValue = '';
+    } else {
+      displayValue = operate(operandA, displayValue, operator);
+      populateDisplay();
+      operandA = displayValue;
+      digits = [];
+      displayValue = '';
+    }
   }
 }
 

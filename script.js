@@ -1,7 +1,6 @@
 let displayValue;
 let operandA;
 let operandB;
-let previousBtn;
 let operator;
 //this array is used to check if the display has reached it's max capacity for characters (9)
 let digits = [];
@@ -30,8 +29,12 @@ function populateDisplay() {
     display.textContent = 'ERROR';
   } else {
     console.log('pD()', displayValue);
-    display.textContent = displayValue;
+    display.textContent = roundNumber(Number(displayValue));
   }
+}
+
+function roundNumber(num) {
+  return Math.round(num * 100000000) / 100000000;
 }
 
 function calcButtons() {
@@ -92,7 +95,19 @@ function calcButtons() {
     percentBtn(thisValue);
   } else if (this.value === '+/-') {
     positiveNegativeBtn();
+  } else if (this.value === 'clear') {
+    clearBtn();
   }
+}
+
+function clearBtn() {
+  displayValue = '0';
+  populateDisplay();
+  displayValue = undefined;
+  operandA = undefined;
+  operandB = undefined;
+  operator = undefined;
+  digits = [];
 }
 
 function positiveNegativeBtn() {

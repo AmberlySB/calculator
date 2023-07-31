@@ -6,7 +6,7 @@ button {
   font-weight: 600;
   justify-content: center;
   align-items: center;
-  background-color: #444444;
+  background-color: #4a006a;
   color: white;
   margin: 6px;
   border-radius: 50%;
@@ -51,6 +51,7 @@ input:hover {
   flex-direction: column;
   background-color: black;
   border: 5px solid lightgray;
+  border-radius: 20px;
   height: 580px;
   box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.6);
 }
@@ -108,14 +109,14 @@ input:hover {
 }
 
 .orange {
-  background-color: orange;
+  background-color: #b57edc;
 }
 
 .gray {
-  background-color: #999999;
+  background-color: #6a5acd;
 }
 
 .reverse {
   background-color: white;
-  color: orange;
+  color: #b57edc;
 }
